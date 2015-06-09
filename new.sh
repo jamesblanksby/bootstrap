@@ -61,9 +61,7 @@ if [ -n "$1" ]
 		echo -e "  ${BLUE}[Done]${NC}";
 
 		git remote add development ssh://b@blanks.by$REMOTE_REPO/$PROJECT.git;
-
-		rm -rf $LOCAL_DIR/$PROJECT;
-
+		
 		echo -ne "Connecting to $SSH_HOST";
 
 		ssh $SSH_USER@$SSH_HOST /bin/bash <<- EOL
@@ -90,8 +88,6 @@ if [ -n "$1" ]
 			echo "git --work-tree=$REMOTE_DIR/$PROJECT --git-dir=$REMOTE_REPO/$PROJECT.git checkout -f" >> post-receive;
 			chmod +x post-receive;
 			echo -e "  ${BLUE}[Done]${NC}";
-
-			rm -rf "$REMOTE_REPO/$PROJECT.git" $REMOTE_DIR/$PROJECT;
 		EOL
 
 		echo -e "$BLUE$BOLD"
